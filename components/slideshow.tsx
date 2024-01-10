@@ -1,3 +1,4 @@
+'use client'
 import React, { useState, useEffect } from 'react';
 
 type SlideshowProps = {
@@ -32,7 +33,7 @@ const Slideshow: React.FC<SlideshowProps> = ({ slides }) => {
             <button
               key={index}
               onClick={() => selectSlide(index)}
-              className={`mx-1 p-2 border rounded ${currentSlide === index ? 'bg-gray-300' : 'bg-white'}`}
+              className={`mx-1 p-1 border rounded ${currentSlide === index ? 'bg-gray-300' : 'bg-white'}`}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}

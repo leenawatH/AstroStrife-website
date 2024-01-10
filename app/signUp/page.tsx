@@ -1,13 +1,20 @@
 'use client'
-import { useState } from 'react';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
-import { auth , firestore } from '@/app/firebase/config'
-import { collection, doc, setDoc } from "firebase/firestore"; 
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { signUp } from './action'
+import { useFormState } from 'react-dom';
 
+interface StateType {
+  message: string;
+}
 
 export default function Page(){
   const router = useRouter();
+  const initState: StateType = {
+    message: '',
+  };
+
+  const [state, formAction] = useFormState(signUp, initState);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -15,58 +22,25 @@ export default function Page(){
 
   const [errorMessage, setErrorMessage] = useState('');
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
-  const [showErrorPopup, setShowErrorPopup] = useState(false);
 
-  const [ createUserWithEmailAndPassword ] = useCreateUserWithEmailAndPassword( auth );
-
-  const db = collection(firestore, "users");
-
-
-  const handleSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log("email : " + email + "password : " + password);
-    
-    setErrorMessage('');
-      
-    if (password.length < 5) {
-        setErrorMessage('Password must be greater than 6 characters.');
-        return;
-    }else{
-      try{
-        const res  = await createUserWithEmailAndPassword(email,password);
-
-        console.log({res});
-
-        if(res){
-          await setDoc(doc(db, email), {
-            email: email, 
-            username: username, 
-            level: 1,
-            driver: [],
-            ship: ["offensive", "defensive" , "utility"] });
-          
-          setEmail('');
-          setPassword('');
-          setUsername('');
-  
-          setShowSuccessPopup(true);
-  
-          setTimeout(() => {
-              setShowSuccessPopup(false);
-              router.push('/signIn');
-          }, 3000);
-        }else{
-
-          setErrorMessage('The email is already sign up!');
-          
-        }
-
-  
-      }catch(e){
-        console.error(e);
-      }
+  useEffect(() => {
+    if (state.message === 'Password must be greater than 6 characters.') {
+      setErrorMessage('Password must be greater than 6 characters.');
+    } else if (state.message === 'The email is already sign up!') {
+      setErrorMessage('The email is already sign up!');
+    } else if (state.message === 'Sign up successfully!') {
+      setShowSuccessPopup(true);
+      setTimeout(() => {
+        setShowSuccessPopup(false);
+        setEmail('');
+        setPassword('');
+        setUsername('');
+        router.push('/signIn');
+      }, 2000); // Adjust timeout as needed
     }
-  };
+  }, [state.message, router]);
+
+
 
   const SuccessPopup = () => (
     <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -80,7 +54,7 @@ export default function Page(){
     <div className="flex justify-center items-center h-screen bg-gray-100">
     <form 
         className="p-8 max-w-lg w-full bg-white rounded-lg border border-gray-200 shadow-md"
-        onSubmit={handleSignUp}
+        action={formAction}
     >
         <h2 className="text-2xl font-bold mb-2 text-gray-800">Sign Up</h2>
         <div className="mb-4">
@@ -88,6 +62,7 @@ export default function Page(){
           <input
             type="email"
             id="email"
+            name= "email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="w-full p-2 border border-gray-300 rounded mt-1 text-sm text-black"
@@ -99,6 +74,7 @@ export default function Page(){
           <input
             type="password"
             id="password"
+            name= "password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="w-full p-2 border border-gray-300 rounded mt-1 text-sm text-black"
@@ -110,6 +86,7 @@ export default function Page(){
           <input
             type="username"
             id="username"
+            name= "username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             className="w-full p-2 border border-gray-300 rounded mt-1 text-sm text-black"

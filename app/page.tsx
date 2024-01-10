@@ -20,12 +20,12 @@ export default function Home() {
 
     <div className="bg-gray-100">
           {/* Navigation Bar */}
-          <Navbar shouldHideOnScroll>
+          <Navbar>
             <div className="container mx-auto flex justify-between items-center p-4">
               <div className="flex space-x-10">
                 {/* Logo and navigation items */}
                 <Link color="foreground" href="/">
-                  <a className="font-bold text-lg">GameLogo</a>
+                  <div className="font-bold text-lg">GameLogo</div>
                 </Link>
                 <Link color="foreground" href="/">
                   Game
@@ -56,7 +56,7 @@ export default function Home() {
       <div className="p-20 h-screen">
         <div className="text-center p-12 bg-opacity-50 rounded">
           <p className="text-lg mb-7 text-black">A MOBA game, two teams of players compete against each other on a battlefield.</p>
-          <h1 className="text-5xl font-bold mb-6 text-lg text-black">Welcome to AstroStrife</h1>
+          <h1 className="text-5xl font-bold mb-6 text-black">Welcome to AstroStrife</h1>
           <p className="text-sm text-black">A one-lane spaceship shooter Multiplayer online battle arena(MOBA) 5v5 game.</p>
           <p className="text-sm text-black"> Around the map scatter a capture the flag base which can capture to boost the team's advantage</p>
           
@@ -118,24 +118,24 @@ export default function Home() {
         </div>
       </div>
       <div className="text-center p-20 bg-opacity-50 text-black">
-        <h1 className="text-5xl font-bold mb-6 text-lg text-black">Ship And Driver</h1>
+        <h1 className="text-3xl font-bold mb-4 py-5">Ship And Driver</h1>
         
         {/* Cards for Ship and Driver */}
         <div className="flex justify-center items-center space-x-4">
           {/* Ship Card */}
           <Link href="/ship">
-            <a className="block p-6 border border-black rounded-lg hover:border-red-500 cursor-pointer">
+            <div className="block p-6 border border-black rounded-lg hover:border-red-500 cursor-pointer">
               <h2 className="text-xl font-bold mb-2 text-black">Ship</h2>
               <p className="text-black">Explore different ships and their capabilities.</p>
-            </a>
+            </div>
           </Link>
 
           {/* Driver Card */}
           <Link href="/driver">
-            <a className="block p-6 border border-black rounded-lg hover:border-red-500 cursor-pointer">
+            <div className="block p-6 border border-black rounded-lg hover:border-red-500 cursor-pointer">
               <h2 className="text-xl font-bold mb-2 text-black">Driver</h2>
               <p className="text-black">Learn about the drivers and their skills.</p>
-            </a>
+            </div>
           </Link>
         </div>
       </div>
