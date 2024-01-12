@@ -1,11 +1,20 @@
 'use client'
-import React from "react";
-import { Navbar, Link, Button } from "@nextui-org/react";
+import React, { useEffect, useState } from "react";
+import { Dropdown,DropdownTrigger, DropdownMenu, DropdownItem, Navbar, Link, Button } from "@nextui-org/react";
 import Slideshow  from '../components/slideshow';
-import './App.css';
+import cookies from "js-cookie";
 
 export default function Home() {
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = cookies.get('token'); // Replace 'token' with your cookie token name
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+  
   const slides = [
     '/image/map/2.png', 
     '/image/map/3.png', 
@@ -13,8 +22,6 @@ export default function Home() {
     '/image/map/5.png', 
     '/image/map/6.png', 
   ];
-
-  const description = 'Map size 1600 x 1600 Unity unit size (1.6 km on each side, with a diagonal of 2.25 km) ship size 8 units typical movement speed of a character is around 35 units/second or about 0.35 km/s. ';
   
   return (
 
@@ -41,11 +48,31 @@ export default function Home() {
                 </Link>
               </div>
               <div>
-                <Link href="/signIn">
-                <Button color="danger">
-                    Sign In
-                </Button>
-                </Link>
+                  {isLoggedIn ? (
+                  
+                  <><Dropdown>
+                  <DropdownTrigger>
+                    <Button 
+                      color="danger"
+                    >
+                      Account
+                    </Button>
+                  </DropdownTrigger>
+                  <DropdownMenu aria-label="Link Actions">
+                    <DropdownItem key="account" href="/account" className="text-black">
+                      View Account
+                    </DropdownItem>
+                    <DropdownItem key="logout" href="/logout" className="text-danger">
+                      Log out
+                    </DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+                </>
+                ) : (
+                  <Link href="/signIn">
+                    <Button color="danger">Sign In</Button>
+                  </Link>
+                )}
               </div>
             </div>
             </Navbar>
@@ -143,3 +170,4 @@ export default function Home() {
     </div>
   )
 }
+

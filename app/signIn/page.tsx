@@ -22,8 +22,7 @@ export default function Page(){
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
-      if(state.message == 'Login fail'){
-        console.log("Login fail")
+      if(state.message == 'Incorrect Email or Password'){
         setErrorMessage('Incorrect Email or Password');
       }else if(state.message == 'Logged in successfully'){
         console.log("Logged in successfully")
