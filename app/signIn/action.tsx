@@ -3,7 +3,6 @@ import { auth } from '@/app/firebase/config';
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { SignJWT , importJWK } from 'jose'
 import { cookies } from 'next/headers'
-import { redirect } from 'next/navigation'
 
 interface StateType {
     message: string;
@@ -34,7 +33,6 @@ export async function login(prevState : StateType, formData : FormData){
           const token = await new SignJWT({email})
                         .setProtectedHeader({ alg: 'HS256'})
                         .setIssuedAt()
-                        .setExpirationTime('1h')
                         .sign(secretKey)
           console.log(token);
 

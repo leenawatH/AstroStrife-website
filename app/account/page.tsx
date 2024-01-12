@@ -1,26 +1,35 @@
 'use client'
 import React, { useEffect, useState } from "react";
 import { Dropdown,DropdownTrigger, DropdownMenu, DropdownItem, Navbar, Link, Button } from "@nextui-org/react";
-import cookies from "js-cookie";
+import { fetchUserData } from './action'
+
+interface UserData {
+  id: String;
+  username: String;
+  ship: [];
+  driver: [];
+  level: Number;
+}
 
 export default function Page() {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userData, setUserData] = useState<UserData | null>(null);
 
   useEffect(() => {
-    const token = cookies.get('token'); // Replace 'token' with your cookie token name
-    if (token) {
-      setIsLoggedIn(true);
+    async function getUserData() {
+      const data = await fetchUserData(); // Pass the actual email id or get from context
+      setUserData(data);
     }
+    
+    getUserData();
   }, []);
-  
-  
+
   return (
 
     <div className="bg-gray-100">
           {/* Navigation Bar */}
           <Navbar>
-            <div className="container mx-auto flex justify-between items-center p-4">
+            <div className="container mx-auto flex justify-between items-center">
               <div className="flex space-x-10">
                 {/* Logo and navigation items */}
                 <Link color="foreground" href="/">
@@ -40,7 +49,7 @@ export default function Page() {
                 </Link>
               </div>
               <div>
-                  {isLoggedIn ? (
+            
                   
                   <><Dropdown>
                   <DropdownTrigger>
@@ -60,18 +69,29 @@ export default function Page() {
                   </DropdownMenu>
                 </Dropdown>
                 </>
-                ) : (
-                  <Link href="/signIn">
-                    <Button color="danger">Sign In</Button>
-                  </Link>
-                )}
               </div>
             </div>
             </Navbar>
-
-      {/* Main Content */}
-
+            <div className="p-40 justify-center flex">
+            <div className="grid grid-cols-6 gap-4 w-full">
+              {/* Left column taking up 2/6 of the space */}
+              <div className="col-span-2 rounded p-6 bg-gray-300">
+                <h1 className="text-5xl font-bold text-black">Account Setting</h1>
+                {/* ... rest of your left column content */}
+              </div>
+              {/* Right column taking up 4/6 of the space */}
+             
+              <div className="col-span-4 rounded p-6 bg-gray-400">
+                <h1 className="text-5xl font-bold text-black">{userData?.username}</h1>
+                {/* ... rest of your right column content */}
+              </div>
+              <div className="col-span-4 rounded p-6 bg-gray-400">
+                <h1 className="text-5xl font-bold text-black">{userData?.level.toString()}</h1>
+                {/* ... rest of your right column content */}
+              </div>
+            </div>
+      </div>            
     </div>
-  )
+  );
 }
 
