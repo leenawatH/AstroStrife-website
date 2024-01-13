@@ -3,17 +3,33 @@ import React, { useEffect, useState } from "react";
 import { Dropdown,DropdownTrigger, DropdownMenu, DropdownItem, Navbar, Link, Button } from "@nextui-org/react";
 import Slideshow  from '../components/slideshow';
 import cookies from "js-cookie";
+import { useRouter } from 'next/navigation';
+import { signOut } from 'firebase/auth';
+import { auth } from '@/app/firebase/config';
 
 export default function Home() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
-    const token = cookies.get('token'); // Replace 'token' with your cookie token name
+    const token = cookies.get('token');
     if (token) {
       setIsLoggedIn(true);
     }
   }, []);
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      cookies.remove('token');
+      setIsLoggedIn(false);
+      router.push('/');
+    } catch (error) {
+      console.error("Logout Error", error);
+    }
+  };
+
   
   const slides = [
     '/image/map/2.png', 
@@ -62,7 +78,7 @@ export default function Home() {
                     <DropdownItem key="account" href="/account" className="text-black">
                       View Account
                     </DropdownItem>
-                    <DropdownItem key="logout" href="/logout" className="text-danger">
+                    <DropdownItem key="logout" onClick={handleLogout} className="text-danger">
                       Log out
                     </DropdownItem>
                   </DropdownMenu>
@@ -70,7 +86,7 @@ export default function Home() {
                 </>
                 ) : (
                   <Link href="/signIn">
-                    <Button color="danger">Sign In</Button>
+                    <Button color="danger" >Sign In</Button>
                   </Link>
                 )}
               </div>

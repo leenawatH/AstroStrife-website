@@ -1,6 +1,6 @@
 'use server'
 import { auth } from '@/app/firebase/config';
-import { signInWithEmailAndPassword } from 'firebase/auth'
+import { signInWithEmailAndPassword  } from 'firebase/auth'
 import { SignJWT , importJWK } from 'jose'
 import { cookies } from 'next/headers'
 
@@ -37,6 +37,7 @@ export async function login(prevState : StateType, formData : FormData){
           console.log(token);
 
           cookies().set('token',token)
+
           return {message: 'Logged in successfully' };
 
         }catch(e){
