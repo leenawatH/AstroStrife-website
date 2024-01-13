@@ -27,6 +27,8 @@ export default function Page(){
       }else if(state.message == 'Logged in successfully'){
         console.log("Logged in successfully")
         router.push('/');
+      }else{
+        console.log("Error : " + state.message);
       }
   }, [state.message, router]);
 

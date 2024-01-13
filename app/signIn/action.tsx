@@ -42,7 +42,7 @@ export async function login(prevState : StateType, formData : FormData){
 
         }catch(e){
           console.error(e)
-          return {message : 'Incorrect Email or Password'}
+          return {message : 'Incorrect Email or Password with : ' + e}
         }
 
 }
