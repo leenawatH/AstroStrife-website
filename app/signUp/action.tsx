@@ -1,6 +1,6 @@
-'use server'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { auth , firestore } from '@/app/firebase/config'
+"use server"
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth , firestore } from "@/app/firebase/config";
 import { collection, doc, setDoc } from "firebase/firestore"; 
 interface StateType {
     message: string;

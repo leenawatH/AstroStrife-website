@@ -1,8 +1,8 @@
-'use client'
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { signUp } from './action'
-import { useFormState } from 'react-dom';
+"use client"
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { signUp } from "./action"
+import { useFormState } from "react-dom";
 
 interface StateType {
   message: string;

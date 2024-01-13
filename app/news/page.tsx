@@ -1,8 +1,8 @@
-'use client'
+"use client"
 import { Dropdown,DropdownTrigger, DropdownMenu, DropdownItem, Navbar, Link, Button } from "@nextui-org/react";
-import { useRouter } from 'next/navigation';
-import { signOut } from 'firebase/auth';
-import { auth } from '@/app/firebase/config';
+import { useRouter } from "next/navigation";
+import { signOut } from "firebase/auth";
+import { auth } from "@/app/firebase/config";
 import cookies from "js-cookie";
 
 export default function Page(){

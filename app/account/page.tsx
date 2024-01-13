@@ -1,10 +1,10 @@
-'use client'
+"use client"
 import React, { useEffect, useState } from "react";
 import { Dropdown,DropdownTrigger, DropdownMenu, DropdownItem, Navbar, Link, Button } from "@nextui-org/react";
-import { fetchUserData } from './action'
-import { useRouter } from 'next/navigation';
-import { signOut } from 'firebase/auth';
-import { auth } from '@/app/firebase/config';
+import { fetchUserData } from "./action";
+import { useRouter } from "next/navigation";
+import { signOut } from "firebase/auth";
+import { auth } from "@/app/firebase/config";
 import cookies from "js-cookie";
 
 interface UserData {

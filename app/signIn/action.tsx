@@ -1,8 +1,8 @@
-'use server'
-import { auth } from '@/app/firebase/config';
-import { signInWithEmailAndPassword  } from 'firebase/auth'
-import { SignJWT , importJWK } from 'jose'
-import { cookies } from 'next/headers'
+"use server"
+import { auth } from "@/app/firebase/config";
+import { signInWithEmailAndPassword  } from "firebase/auth";
+import { SignJWT , importJWK } from "jose";
+import { cookies } from "next/headers";
 
 interface StateType {
     message: string;

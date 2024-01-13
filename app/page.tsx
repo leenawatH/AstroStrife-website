@@ -1,11 +1,11 @@
-'use client'
+"use client"
 import React, { useEffect, useState } from "react";
 import { Dropdown,DropdownTrigger, DropdownMenu, DropdownItem, Navbar, Link, Button } from "@nextui-org/react";
-import Slideshow  from '../components/slideshow';
+import Slideshow  from "../components/slideshow";
 import cookies from "js-cookie";
-import { useRouter } from 'next/navigation';
-import { signOut } from 'firebase/auth';
-import { auth } from '@/app/firebase/config';
+import { useRouter } from "next/navigation";
+import { signOut } from "firebase/auth";
+import { auth } from "@/app/firebase/config";
 
 export default function Home() {
 
@@ -13,7 +13,7 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    const token = cookies.get('token');
+    const token = cookies.get("token");
     if (token) {
       setIsLoggedIn(true);
     }
@@ -22,9 +22,9 @@ export default function Home() {
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      cookies.remove('token');
+      cookies.remove("token");
       setIsLoggedIn(false);
-      router.push('/');
+      router.push("/");
     } catch (error) {
       console.error("Logout Error", error);
     }

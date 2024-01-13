@@ -1,7 +1,7 @@
-'use server'
+"use server"
 import { firestore } from "../firebase/config";
-import { doc, getDoc } from 'firebase/firestore';
-import { headers } from 'next/headers'
+import { doc, getDoc } from "firebase/firestore";
+import { headers } from "next/headers";
 
 interface UserData {
     id: String;
