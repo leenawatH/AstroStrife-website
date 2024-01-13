@@ -6,6 +6,7 @@ import { headers } from 'next/headers'
 interface UserData {
     id: String;
     username: String;
+    email: String;
     ship: [];
     driver: [];
     level: Number;

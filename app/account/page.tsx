@@ -10,6 +10,7 @@ import cookies from "js-cookie";
 interface UserData {
   id: String;
   username: String;
+  email: String;
   ship: [];
   driver: [];
   level: Number;
@@ -145,7 +146,7 @@ export default function Page() {
                       id="email" 
                       readOnly 
                       className="bg-gray-300 p-3 text-black placeholder-black focus:ring-0" 
-                      placeholder='test@gmail.com' 
+                      placeholder={userData?.email ? String(userData.email) : 'No username'}
                     />
 
                   </div>
