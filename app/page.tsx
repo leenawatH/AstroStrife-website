@@ -103,7 +103,10 @@ export default function Home() {
           <p className="text-sm text-black">A one-lane spaceship shooter Multiplayer online battle arena(MOBA) 5v5 game.</p>
           <p className="text-sm text-black"> Around the map scatter a capture the flag base which can capture to boost the team's advantage</p>
           
-          <Link href="#whatisAstrostrife" className="py-10">
+          <Link href="#whatisAstrostrife" className="py-10" style={{ 
+                  paddingTop: '4rem',
+                  marginTop: '-4rem', 
+                }}>
                 <Button color="danger" size="lg" radius="none">
                     Learn more
                 </Button>
