@@ -103,10 +103,7 @@ export default function Home() {
           <p className="text-sm text-black">A one-lane spaceship shooter Multiplayer online battle arena(MOBA) 5v5 game.</p>
           <p className="text-sm text-black"> Around the map scatter a capture the flag base which can capture to boost the team's advantage</p>
           
-          <Link href="#whatisAstrostrife" className="py-10" style={{ 
-                  paddingTop: '4rem',
-                  marginTop: '-4rem', 
-                }}>
+          <Link href="#whatisAstrostrife" className="py-10">
                 <Button color="danger" size="lg" radius="none">
                     Learn more
                 </Button>
@@ -118,7 +115,10 @@ export default function Home() {
 
         {/* What is AstroStrife section */}
 
-        <div id = 'whatisAstrostrife' className="py-12 text-center">
+        <div id = 'whatisAstrostrife' className="py-12 text-center" style={{ 
+                  paddingTop: '4rem',
+                  marginTop: '-4rem', 
+                }}>
           <h1 className="text-5xl font-bold mb-6">What is AstroStrife?</h1>
           <p className="text-sm mb-4">AstroStrife is a multiplayer online battle arena 5 versus 5 game.</p>
           <p className="text-sm mb-4">The user input will be WASD and aim with mouse movement instead of left/right click.</p>
