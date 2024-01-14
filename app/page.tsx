@@ -116,8 +116,8 @@ export default function Home() {
         {/* What is AstroStrife section */}
 
         <div id = 'whatisAstrostrife' className="py-12 text-center" style={{ 
-                  paddingTop: '4rem',
-                  marginTop: '-4rem', 
+                  paddingTop: '10rem',
+                  marginTop: '-10rem', 
                 }}>
           <h1 className="text-5xl font-bold mb-6">What is AstroStrife?</h1>
           <p className="text-sm mb-4">AstroStrife is a multiplayer online battle arena 5 versus 5 game.</p>
