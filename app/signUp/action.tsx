@@ -27,6 +27,7 @@ export async function signUp(prevState : StateType, formData : FormData){
                 username: username, 
                 level: 1,
                 driver: [],
+                game_histories: [],
                 ship: ["offensive", "defensive" , "utility"] });
                 return {message : 'Sign up successfully!'}
             }else{
