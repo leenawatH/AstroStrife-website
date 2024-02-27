@@ -7,9 +7,11 @@ interface StateType {
   }
 
 export async function signUp(prevState : StateType, formData : FormData){
-    const email = formData.get('email') as string;
+    let email = formData.get('email') as string;
     const password = formData.get('password') as string;
     const username = formData.get('username') as string;
+
+    email = email.toLowerCase();
 
     const db = collection(firestore, "users");
           
