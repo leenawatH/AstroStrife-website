@@ -21,7 +21,6 @@ export default function Page(){
   const [username, setUsername] = useState('');
 
   const [errorMessage, setErrorMessage] = useState('');
-  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   useEffect(() => {
     if (state.message === 'Password must be greater than 6 characters.') {
@@ -29,14 +28,7 @@ export default function Page(){
     } else if (state.message === 'The email is already sign up!') {
       setErrorMessage('The email is already sign up!');
     } else if (state.message === 'Sign up successfully!') {
-      setShowSuccessPopup(true);
-      setTimeout(() => {
-        setShowSuccessPopup(false);
-        setEmail('');
-        setPassword('');
-        setUsername('');
-        router.push('/signIn');
-      }, 2000); // Adjust timeout as needed
+      router.push('/signIn');
     }
   }, [state.message, router]);
 
@@ -97,7 +89,6 @@ export default function Page(){
           {errorMessage && <div className="text-sm text-red-500">{errorMessage}</div>}
         </div>
         <button type="submit" className="w-full p-2 text-sm text-white bg-blue-500 rounded hover:bg-blue-600">Create Account</button>
-        {showSuccessPopup && <SuccessPopup />}
       </form>
     </div>
   );
